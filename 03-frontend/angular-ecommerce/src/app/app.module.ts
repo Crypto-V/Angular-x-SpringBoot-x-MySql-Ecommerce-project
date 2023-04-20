@@ -3,20 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
+import { RouterModule, Routes } from '@angular/router';
+import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+
+const routes: Routes = [
+  { path: 'category/:id/:name', component: ProductListComponent },
+  { path: 'category', component: ProductListComponent },
+  { path: 'products', component: ProductListComponent },
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: '**', redirectTo: '/products', pathMatch: 'full' },
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductListComponent
-  ],
+  declarations: [AppComponent, ProductListComponent, ProductCategoryMenuComponent],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
-    HttpClientModule
-  ],
+     HttpClientModule
+    ],
   // provided helps to inject the products into the application
   providers: [ProductService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

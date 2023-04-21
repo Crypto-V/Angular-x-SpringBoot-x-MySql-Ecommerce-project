@@ -14,4 +14,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     //This line Spring will automatically execute the query SELECT * FROM product WHERE category_id = ?
     //And will exposse the endpoint ... /pruducts/search/findByCategory?id=1
     Page<Product> findByCategoryId(@Param("id") Long id, Pageable pageable);
+
+    //Create another query method that will call SELECT * FROM Product p WHERE p.name LIKE CONCAT('%', :name, '%')
+    //Will exposse endpoint such as .../products/search/findByNameContaining?name=Python
+    Page<Product> findByNameContaining(@Param("name") String name, Pageable page);
 }

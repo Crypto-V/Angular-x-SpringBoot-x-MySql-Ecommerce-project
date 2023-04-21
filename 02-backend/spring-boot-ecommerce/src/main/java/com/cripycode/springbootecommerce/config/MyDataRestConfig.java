@@ -31,10 +31,14 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
         //disable the PUT, POST, DELETE for Product
-        config.getExposureConfiguration().forDomainType(Product.class).withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)).withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+        config.getExposureConfiguration().forDomainType(Product.class)
+                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 
         //disable the PUT, POST, DELETE for ProductCategory
-        config.getExposureConfiguration().forDomainType(ProductCategory.class).withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions)).withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+        config.getExposureConfiguration().forDomainType(ProductCategory.class)
+                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 
         //call an internal helper method to expose the ids
         exposeIds(config);
@@ -42,7 +46,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     private void exposeIds(RepositoryRestConfiguration config) {
 
-        //expose entity ids
+        //expose entity ids in the JSON
 
         //
 
